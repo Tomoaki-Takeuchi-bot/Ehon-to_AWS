@@ -14,6 +14,16 @@ spec:
       labels:
         app: backend-app
     spec:
+      initContainers:
+        - name: backend-app
+          image: ${ECR_HOST}
+          command:
+            [
+              "bin/bash",
+              "-c",
+              "bundle exec rails db:migrate",
+              "bundle exec rails db:seed",
+            ]
       containers:
         - name: backend-app
           image: ${ECR_HOST}
@@ -22,10 +32,6 @@ spec:
             - /bin/bash
           args:
             - -c
-            - RAILS_ENV=production bundle install
-            - RAILS_ENV=production bundle exec yarn install
-            - RAILS_ENV=production bundle exec rails db:migrate
-            - bundle exec rails db:seed
             - bundle exec rails s -p '3000' -b '0.0.0.0' -e production
           ports:
             - containerPort: 3000

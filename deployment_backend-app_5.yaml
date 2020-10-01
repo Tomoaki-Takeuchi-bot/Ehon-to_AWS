@@ -14,12 +14,20 @@ spec:
       labels:
         app: backend-app
     spec:
+      # initContainers:
+      #   - name: output-1
+      #     image: ${ECR_HOST}
+      #     command: ["/bin/bash", "-c", "bundle exec rails db:migrate"]
+      #   - name: output-2
+      #     image: ${ECR_HOST}
+      #     command: ["/bin/bash", "-c", "bundle exec rails db:seed"]
       containers:
         - name: backend-app
           image: ${ECR_HOST}
           imagePullPolicy: Always
           command: ["/bin/bash"]
-          args: ["-c", "bundle exec rails s -p '3000' -b '0.0.0.0'"]
+          args:
+            ["-c", "bundle exec rails s -p '3000' -b '0.0.0.0' -e production"]
           ports:
             - containerPort: 3000
           env:
@@ -38,6 +46,26 @@ spec:
                 secretKeyRef:
                   key: db-password
                   name: db-config
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  key: access_key_id
+                  name: aws-config
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: secret_access_key
+                  name: aws-config
+            - name: MAIL_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  key: mail_address
+                  name: mail-config
+            - name: MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: mail_password
+                  name: mail-config
           resources:
             requests:
               cpu: 100m

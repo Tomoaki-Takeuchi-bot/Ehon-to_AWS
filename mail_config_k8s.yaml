@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: mail-config
+stringData:
+  mail_address: ${MAIL_ADDRESS}
+  mail_password: ${MAIL_PASSWORD}

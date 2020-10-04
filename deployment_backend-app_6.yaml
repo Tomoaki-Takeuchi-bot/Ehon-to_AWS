@@ -34,38 +34,18 @@ spec:
             - name: DB_URL
               valueFrom:
                 secretKeyRef:
-                  key: db_url
+                  key: db-url
                   name: db-config
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  key: db_username
+                  key: db-username
                   name: db-config
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: db_password
+                  key: db-password
                   name: db-config
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  key: aws_access_key_id
-                  name: aws-config
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: aws_secret_access_key
-                  name: aws-config
-            - name: MAIL_ADDRESS
-              valueFrom:
-                secretKeyRef:
-                  key: mail_address
-                  name: mail-config
-            - name: MAIL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: mail_password
-                  name: mail-config
             - name: RAILS_MASTER_KEY
               valueFrom:
                 secretKeyRef:

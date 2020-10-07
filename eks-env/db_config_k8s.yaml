@@ -4,6 +4,6 @@ type: Opaque
 metadata:
   name: db-config
 stringData:
-  db_url: ${DB_URL}
-  db_username: mywork
-  db_password: ${DB_PASSWORD}
+  db-url: ${DB_URL}
+  db-username: mywork
+  db-password: ${DB_PASSWORD}

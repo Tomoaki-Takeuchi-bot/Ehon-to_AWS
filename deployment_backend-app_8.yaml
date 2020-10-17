@@ -18,9 +18,6 @@ spec:
         - name: backend-app
           image: ${ECR_HOST}
           imagePullPolicy: Always
-          command: ["/bin/bash"]
-          args:
-            ["-c", "bundle exec rails s -p '3000' -b '0.0.0.0' -e production"]
           ports:
             - containerPort: 3000
           env:

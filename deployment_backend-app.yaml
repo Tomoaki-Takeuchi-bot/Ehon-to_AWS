@@ -41,18 +41,6 @@ spec:
                 secretKeyRef:
                   key: rails_master_key
                   name: credentials-config
-          readinessProbe:
-            httpGet:
-              port: 3000
-              path: /health
-            initialDelaySeconds: 15
-            periodSeconds: 30
-          livenessProbe:
-            httpGet:
-              port: 3000
-              path: /health
-            initialDelaySeconds: 30
-            periodSeconds: 30
           resources:
             requests:
               cpu: 100m

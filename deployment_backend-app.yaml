@@ -41,6 +41,7 @@ spec:
                 secretKeyRef:
                   key: rails_master_key
                   name: credentials-config
+          # resourceは運用状況により修正必要
           resources:
             requests:
               cpu: 100m
